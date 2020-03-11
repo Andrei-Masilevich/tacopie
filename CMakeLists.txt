@@ -23,7 +23,7 @@
 ###
 # config
 ###
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required( VERSION 3.0.2 )
 set(CMAKE_MACOSX_RPATH 1)
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 
@@ -80,12 +80,6 @@ set(DEPS_INCLUDES ${PROJECT_SOURCE_DIR}/deps/include)
 set(DEPS_LIBRARIES ${PROJECT_SOURCE_DIR}/deps/lib)
 set(TACOPIE_INCLUDES ${PROJECT_SOURCE_DIR}/includes)
 
-
-###
-# includes
-###
-include_directories(${TACOPIE_INCLUDES})
-
 ###
 # sources
 ###
@@ -140,6 +134,12 @@ IF (WIN32)
 ELSE ()
   target_link_libraries(${PROJECT} pthread)
 ENDIF (WIN32)
+
+###
+# iterface
+###
+target_include_directories( ${PROJECT}
+                         PUBLIC "${TACOPIE_INCLUDES}" )
 
 # __TACOPIE_LOGGING_ENABLED
 IF (LOGGING_ENABLED)
