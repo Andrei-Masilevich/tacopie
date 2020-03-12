@@ -174,6 +174,11 @@ tcp_socket::bind(const std::string& host, std::uint32_t port) {
   create_socket_if_necessary();
   check_or_set_type(type::SERVER);
 
+  int optval = 1;
+  if (::setsockopt(m_fd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval)) == -1) {
+    __TACOPIE_THROW(error, "setsockopt() failure");
+  }
+
   struct sockaddr_storage ss;
   socklen_t addr_len;
 
