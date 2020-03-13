@@ -37,7 +37,7 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 ###
 # project
 ###
-set(PROJECT tacopie)
+set(PROJECT server_lib_tacopie)
 project(${PROJECT} CXX)
 
 
