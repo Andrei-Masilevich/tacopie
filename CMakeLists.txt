@@ -142,21 +142,22 @@ install(DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/ DESTINATION lib USE_SOURCE_
 install(DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ DESTINATION bin USE_SOURCE_PERMISSIONS)
 install(DIRECTORY ${TACOPIE_INCLUDES}/ DESTINATION include USE_SOURCE_PERMISSIONS)
 
+option(TACOPIE_BUILD_TESTS "Build Tacopie tests (ON OR OFF)" OFF)
+option(TACOPIE_BUILD_EXAMPLES "Build Tacopie examples (ON OR OFF)" OFF)
 
-###
-# examples
-###
-IF (BUILD_EXAMPLES)
-  add_subdirectory(examples)
-ENDIF(BUILD_EXAMPLES)
+# If this lib is not a sub-project:
+if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
+    set(TACOPIE_BUILD_TESTS ON)
+    set(TACOPIE_BUILD_EXAMPLES ON)
+endif()
 
-
-###
-# tests
-###
-IF (BUILD_TESTS)
+IF (TACOPIE_BUILD_TESTS)
   add_subdirectory(tests)
   ExternalProject_Add("googletest"
                       GIT_REPOSITORY "https://github.com/google/googletest.git"
                       CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${PROJECT_SOURCE_DIR}/deps")
-ENDIF(BUILD_TESTS)
+ENDIF(TACOPIE_BUILD_TESTS)
+
+IF (TACOPIE_BUILD_EXAMPLES)
+  add_subdirectory(examples)
+ENDIF(TACOPIE_BUILD_EXAMPLES)

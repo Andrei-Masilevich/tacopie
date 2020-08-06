@@ -65,7 +65,7 @@ endforeach()
 ###
 add_executable(${PROJECT} ${SOURCES})
 
-target_link_libraries(${PROJECT} tacopie gtest)
+target_link_libraries(${PROJECT} server_lib_tacopie gtest)
 
 IF (WIN32)
   target_link_libraries(${PROJECT} ws2_32)
