@@ -142,8 +142,8 @@ install(DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/ DESTINATION lib USE_SOURCE_
 install(DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ DESTINATION bin USE_SOURCE_PERMISSIONS)
 install(DIRECTORY ${TACOPIE_INCLUDES}/ DESTINATION include USE_SOURCE_PERMISSIONS)
 
-option(TACOPIE_BUILD_TESTS "Build Tacopie tests (ON OR OFF)" OFF)
-option(TACOPIE_BUILD_EXAMPLES "Build Tacopie examples (ON OR OFF)" OFF)
+option(TACOPIE_BUILD_TESTS "Build Tacopie tests (ON OR OFF). This option makes sense only for integrated library!" OFF)
+option(TACOPIE_BUILD_EXAMPLES "Build Tacopie examples (ON OR OFF). This option makes sense only for integrated library!" OFF)
 
 # If this lib is not a sub-project:
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
